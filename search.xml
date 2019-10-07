@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title><![CDATA[Hello Hexo]]></title>
+    <url>%2F2019%2F10%2F07%2Fhello-world%2F</url>
+    <content type="text"><![CDATA[Nice to meet you $f_{i} \leq f_{i-1} \times f_{i-2}$]]></content>
+      <categories>
+        <category>Trivial</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+      </tags>
+  </entry>
+</search>
