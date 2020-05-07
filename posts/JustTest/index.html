@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico?v=7.4.1">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=7.4.1">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=7.4.1">
+  <link rel="mask-icon" href="/images/favicon.ico?v=7.4.1" color="#222">
+  <link rel="alternate" href="/atom.xml" title="Yiayaz's Blog" type="application/atom+xml">
+
+<link rel="stylesheet" href="/css/main.css?v=7.4.1">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-loading-bar.min.css?v=1.0.2">
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.4.1',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":true,"style":"flat"},
+    back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: 'Copy',
+      copy_success: 'Copied',
+      copy_failure: 'Copy failed'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="可以借助这个，熟悉Qt的操作">
+<meta name="keywords" content="Qt">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JustTest">
+<meta property="og:url" content="https://yiayaz.top/posts/JustTest/index.html">
+<meta property="og:site_name" content="Yiayaz&#39;s Blog">
+<meta property="og:description" content="可以借助这个，熟悉Qt的操作">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://m.qpic.cn/psc?/V10FhZTb1y231c/jmmX4OKaz9ls*nNN2EORpQul2wfhN3cnBAAzmLHXy0zyuA7*0F.2.2XviFeKJcyOowWafpuPcBLS8T13IWc.YzeBuY8hGTyFcm.VChCmO9s!/b&bo=cgMvAgAAAAADF24!&rf=viewer_4">
+<meta property="og:image" content="http://m.qpic.cn/psc?/V10FhZTb1y231c/jmmX4OKaz9ls*nNN2EORpd.Upu8DDVJOrKMqkjEcBFGrVge0mBYK3uI.KjSfILyXlzdkR8xHuznkDvY4rBVEXGXsaFa1kFsfw44rlbFocDQ!/b&bo=YwBWAAAAAAADFwc!&rf=viewer_4">
+<meta property="og:image" content="http://m.qpic.cn/psc?/V10FhZTb1y231c/jmmX4OKaz9ls*nNN2EORpT99uTdjLkSudz*2SOR.zct4Gex5sTJytppL8hlewWbfVbuRlB85plp4S.1Epv0OyAPX0eZhKHNgAyNo*RW0NnE!/b&bo=wwC9AAAAAAADF0w!&rf=viewer_4">
+<meta property="og:image" content="http://m.qpic.cn/psc?/V10FhZTb1y231c/jmmX4OKaz9ls*nNN2EORpX2V8cm**DuwY4UoTXYASPyhZ8L3jigAnpWnLIBK06keM9apgqJQ2RnwzEZJP4gQtv5hKkyTqZdlNdsTPc77F4I!/b&bo=ogNhAQAAAAADF*M!&rf=viewer_4">
+<meta property="og:image" content="http://m.qpic.cn/psc?/V10FhZTb1y231c/jmmX4OKaz9ls*nNN2EORpTk1P1XVkjRxg9eA84B9BqUDRoScGdmFKFCT.NEjejwKET*WTT2t7p6ts99frU3wPYdsym5p8aHXcBtKz6*1qu4!/b&bo=6gBiAAAAAAADF7o!&rf=viewer_4">
+<meta property="og:image" content="http://m.qpic.cn/psc?/V10FhZTb1y231c/jmmX4OKaz9ls*nNN2EORpTC6kZTl6vLergScYqA4YYcrlVF6Wz3EBbidqVapwU88pMr0wNvgiO7xGldebjwxzAT.AenFVi.7*nRe7tIrZ3Q!/b&bo=pgBqAAAAAAADB.4!&rf=viewer_4">
+<meta property="og:image" content="http://m.qpic.cn/psc?/V10FhZTb1y231c/jmmX4OKaz9ls*nNN2EORpZkrf6aDf*phHUCKDZSwhLL9RFLah6l*NMVOkgpcMlmNQ94bejWEzzHK57OY*flJzQg*IDrqpBw2yutA24OMLvQ!/b&bo=owCAAAAAAAADFxE!&rf=viewer_4">
+<meta property="og:image" content="http://m.qpic.cn/psc?/V10FhZTb1y231c/jmmX4OKaz9ls*nNN2EORpcqoG2LeKyEWbjib8NLlfhjaznwdcLI3729gZMIS8k2EQBlMVD7MJjiWNfTbbp17UT.aVlHGz9VHauR0wTmJQX0!/b&bo=hQE1AQAAAAADF4I!&rf=viewer_4">
+<meta property="og:image" content="https://wizardforcel.gitbooks.io/qt-beginning/content/img/4-5.png">
+<meta property="og:image" content="http://m.qpic.cn/psc?/V10FhZTb1y231c/jmmX4OKaz9ls*nNN2EORpUVJW1tO6mB.zFfFTS6rHAW*3IiyvagSJdxAB.qVJGzgof*BuXzWUntD3jANr455ls1D7uSueO6SGqvXuXhHSSs!/b&bo=*QAwAAAAAAADF*8!&rf=viewer_4">
+<meta property="og:image" content="http://m.qpic.cn/psc?/V10FhZTb1y231c/jmmX4OKaz9ls*nNN2EORpcuhQELVQhBxEvtT9Jb7Vsur8z7Vq8RhrOqDGKm5TaV1aUH0g6RF2dyT9DEm*JySN308YhtaHOFz2T4nReAz*Mw!/b&bo=cgMvAgAAAAADF24!&rf=viewer_4">
+<meta property="og:image" content="http://m.qpic.cn/psc?/V10FhZTb1y231c/jmmX4OKaz9ls*nNN2EORpeXZF8EHHw26vjpSWLVHhBe6aB5xoCnfwh.THlnQEAnDDxJ8cfR*0JX7khg*Po5mAljG*xOid61jo*pub*G7rc4!/b&bo=rgGBAAAAAAADFxw!&rf=viewer_4">
+<meta property="og:image" content="http://m.qpic.cn/psc?/V10FhZTb1y231c/jmmX4OKaz9ls*nNN2EORpRb78yofnTg*vkZhwgkRonzXreh.NCuxM94Df9T6EN0.tmgffFHr.SRy7.UGIWvY6gDFqNV2vG2pc0owE.UbBok!/b&bo=.wL6AAAAAAADFzE!&rf=viewer_4">
+<meta property="og:image" content="http://m.qpic.cn/psc?/V10FhZTb1y231c/jmmX4OKaz9ls*nNN2EORpe83iRgFSQUIbgAyRoTWabqEYvUAmQiCytopgA6jG8aFw19cjWZeIgTmjazKrZCb**oZTgEfLD5C0v7NLVZTBP4!/b&bo=8AIOAgAAAAADF8w!&rf=viewer_4">
+<meta property="og:image" content="http://m.qpic.cn/psc?/V10FhZTb1y231c/jmmX4OKaz9ls*nNN2EORpZ6ETiwKVo85tdOR6uFpHkU598g2HyQ3Cni7LsXAZzvSGiz57vF86aAyQMNaRedVtwZ5tUXzLz1dUoPsmjhSRVQ!/b&bo=xQRlAwAAAAADF5U!&rf=viewer_4">
+<meta property="og:image" content="http://m.qpic.cn/psc?/V10FhZTb1y231c/jmmX4OKaz9ls*nNN2EORpQPgRBut0qY*Es3rJSR2dHyEx4LZVjVZ*PjmTgfS4K0WaVZ8obbLIm0b*BuiPqRQMRec0*hwFyW7IugPcs2mSoM!/b&bo=xwAFAQAAAAADF*E!&rf=viewer_4">
+<meta property="og:image" content="http://m.qpic.cn/psc?/V10FhZTb1y231c/jmmX4OKaz9ls*nNN2EORpW.Dho.Pl4AZzDgO34YRk*qmvKxrlTlRocGx0Olq7gibottCGBw6kns3CnfaKA13.sq3TzgJYWHQGp0rVI.YWRw!/b&bo=DAHyAAAAAAADF80!&rf=viewer_4">
+<meta property="og:image" content="http://m.qpic.cn/psc?/V10FhZTb1y231c/jmmX4OKaz9ls*nNN2EORpUvmsLYp2kjc1WBo10l3HyVvpau.KlX8*hc1e9GO7bQokWINKOTEMILnIXmGkMzXVuki3Ed9krZCDLh7zRIakPU!/b&bo=5gCBAAAAAAADF1U!&rf=viewer_4">
+<meta property="og:image" content="https://wizardforcel.gitbooks.io/qt-beginning/content/img/5-13.png">
+<meta property="og:image" content="http://m.qpic.cn/psc?/V10FhZTb1y231c/jmmX4OKaz9ls*nNN2EORpbMXn5r9JNH1WtqnHJlxCnROvul97.VgTqnmSr0Pujjt1UShi2xinrG6osA4B1uUfxZcCvDU4QQj*ojK17BDoeI!/b&bo=*QLMAAAAAAADBxE!&rf=viewer_4">
+<meta property="og:updated_time" content="2020-02-08T12:19:50.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JustTest">
+<meta name="twitter:description" content="可以借助这个，熟悉Qt的操作">
+<meta name="twitter:image" content="http://m.qpic.cn/psc?/V10FhZTb1y231c/jmmX4OKaz9ls*nNN2EORpQul2wfhN3cnBAAzmLHXy0zyuA7*0F.2.2XviFeKJcyOowWafpuPcBLS8T13IWc.YzeBuY8hGTyFcm.VChCmO9s!/b&bo=cgMvAgAAAAADF24!&rf=viewer_4">
+  <link rel="canonical" href="https://yiayaz.top/posts/JustTest/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>JustTest | Yiayaz's Blog</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Yiayaz's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">Welcome to my blog</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+        
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+      
+    
+      
+      
+        
+        
+        <li class="menu-item menu-item-about">
+      
+    
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>About</a>
+
+  </li>
+      
+    
+      
+      
+        
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags</a>
+
+  </li>
+      
+    
+      
+      
+        
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories</a>
+
+  </li>
+      
+    
+      
+      
+        
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+      
+    
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger">
+        
+          <i class="fa fa-search fa-fw"></i>
+        
+        Search
+        </a>
+      </li>
+    
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="Searching..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+            
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
+    <link itemprop="mainEntityOfPage" href="https://yiayaz.top/posts/JustTest/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Yiayaz">
+      <meta itemprop="description" content="I heard the echo, from the valleys and the heart.">
+      <meta itemprop="image" content="http://image.0xfaner.top/yiayaz-header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yiayaz's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            JustTest
+            
+
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              
+                
+              
+
+              <time title="Created: 2020-01-16 15:50:20" itemprop="dateCreated datePublished" datetime="2020-01-16T15:50:20+08:00">2020-01-16</time>
+            </span>
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Qt/" itemprop="url" rel="index">
+                    <span itemprop="name">Qt</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              
+              <span></span>
+            </span>
+          
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              
+              <span></span>
+            </span>
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><strong><center>可以借助这个，熟悉Qt的操作</center></strong></p>
+<a id="more"></a>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p>豆子博客</p>
+<p><a href="https://blog.51cto.com/devbean" target="_blank" rel="noopener">https://blog.51cto.com/devbean</a></p>
+<p>Qt开源社区</p>
+<p><a href="http://www.qter.org/" target="_blank" rel="noopener">http://www.qter.org/</a></p>
+<h1 id="新建项目"><a href="#新建项目" class="headerlink" title="新建项目"></a>新建项目</h1><p>新建<code>Qt Widgets Application</code>应用，项目名称为<code>myMainWindow</code>，基类选择<code>QMainWindow</code>，类名为<code>MainWindow</code>。(实际上就是一直点确定)</p>
+<p> <img src="http://m.qpic.cn/psc?/V10FhZTb1y231c/jmmX4OKaz9ls*nNN2EORpQul2wfhN3cnBAAzmLHXy0zyuA7*0F.2.2XviFeKJcyOowWafpuPcBLS8T13IWc.YzeBuY8hGTyFcm.VChCmO9s!/b&amp;bo=cgMvAgAAAAADF24!&amp;rf=viewer_4" alt="img"> </p>
+<p>新建完项目后，检查一下自己的配置</p>
+<p>​                                                                                     <img src="http://m.qpic.cn/psc?/V10FhZTb1y231c/jmmX4OKaz9ls*nNN2EORpd.Upu8DDVJOrKMqkjEcBFGrVge0mBYK3uI.KjSfILyXlzdkR8xHuznkDvY4rBVEXGXsaFa1kFsfw44rlbFocDQ!/b&amp;bo=YwBWAAAAAAADFwc!&amp;rf=viewer_4" alt="img"> </p>
+<p>如果这里显示如上，就点进去</p>
+<p>​                                                                     <img src="http://m.qpic.cn/psc?/V10FhZTb1y231c/jmmX4OKaz9ls*nNN2EORpT99uTdjLkSudz*2SOR.zct4Gex5sTJytppL8hlewWbfVbuRlB85plp4S.1Epv0OyAPX0eZhKHNgAyNo*RW0NnE!/b&amp;bo=wwC9AAAAAAADF0w!&amp;rf=viewer_4" alt="img"> </p>
+<p>然后都选上吧</p>
+<p> <img src="http://m.qpic.cn/psc?/V10FhZTb1y231c/jmmX4OKaz9ls*nNN2EORpX2V8cm**DuwY4UoTXYASPyhZ8L3jigAnpWnLIBK06keM9apgqJQ2RnwzEZJP4gQtv5hKkyTqZdlNdsTPc77F4I!/b&amp;bo=ogNhAQAAAAADF*M!&amp;rf=viewer_4" alt="img"> </p>
+<p>可能会出现这种情况</p>
+<p>​                                                                 <img src="http://m.qpic.cn/psc?/V10FhZTb1y231c/jmmX4OKaz9ls*nNN2EORpTk1P1XVkjRxg9eA84B9BqUDRoScGdmFKFCT.NEjejwKET*WTT2t7p6ts99frU3wPYdsym5p8aHXcBtKz6*1qu4!/b&amp;bo=6gBiAAAAAAADF7o!&amp;rf=viewer_4" alt="img"> </p>
+<p>稍等一下就行</p>
+<h1 id="初试UI"><a href="#初试UI" class="headerlink" title="初试UI"></a>初试UI</h1><p>创建完项目后，打开<code>mainwindow.ui</code>文件进入设计模式。在这里可以看到界面左上角的“在这里输入”，我们可以在这里添加菜单。双击“在这里输入”，将其更改为“文件(<code>&amp;F</code>)”，然后按下<strong>回车键</strong>，效果如下图所示。这里的<code>&amp;F</code>表明将菜单的快捷键设置为了Alt+ F，可以看到，实际的显示效果中<code>&amp;</code>符号是隐藏的。                                </p>
+<p>​                                                                     <img src="http://m.qpic.cn/psc?/V10FhZTb1y231c/jmmX4OKaz9ls*nNN2EORpTC6kZTl6vLergScYqA4YYcrlVF6Wz3EBbidqVapwU88pMr0wNvgiO7xGldebjwxzAT.AenFVi.7*nRe7tIrZ3Q!/b&amp;bo=pgBqAAAAAAADB.4!&amp;rf=viewer_4" alt="img">  </p>
+<p>同样的方法，我们在文件菜单中添加“新建(&amp;N)”子菜单，效果如下图所示。菜单后面的那个加号图标是用来创建下一级菜单的。</p>
+<p>​                                                                     <img src="http://m.qpic.cn/psc?/V10FhZTb1y231c/jmmX4OKaz9ls*nNN2EORpZkrf6aDf*phHUCKDZSwhLL9RFLah6l*NMVOkgpcMlmNQ94bejWEzzHK57OY*flJzQg*IDrqpBw2yutA24OMLvQ!/b&amp;bo=owCAAAAAAAADFxE!&amp;rf=viewer_4" alt="img">             </p>
+<h1 id="添加图标"><a href="#添加图标" class="headerlink" title="添加图标"></a>添加图标</h1><p>没有图标，就没有灵魂 </p>
+<h2 id="认识Action"><a href="#认识Action" class="headerlink" title="认识Action"></a>认识Action</h2><p>Qt中的一个菜单被看做是一个<code>Action</code>，我们在下面的<code>Action</code>编辑器中可以看到刚才添加的“新建”菜单。</p>
+<p>​                                             <img src="http://m.qpic.cn/psc?/V10FhZTb1y231c/jmmX4OKaz9ls*nNN2EORpcqoG2LeKyEWbjib8NLlfhjaznwdcLI3729gZMIS8k2EQBlMVD7MJjiWNfTbbp17UT.aVlHGz9VHauR0wTmJQX0!/b&amp;bo=hQE1AQAAAAADF4I!&amp;rf=viewer_4" alt="img"> </p>
+<p>双击该条目，会弹出编辑动作对话框。</p>
+<p>在编辑动作对话框中的图标后面的 <img src="https://wizardforcel.gitbooks.io/qt-beginning/content/img/4-5.png" alt="img"> 黑色箭头下拉框可以选择资源。</p>
+<h2 id="添加资源文件"><a href="#添加资源文件" class="headerlink" title="添加资源文件"></a>添加资源文件</h2><p>我们向项目中添加新文件</p>
+<p> <img src="http://m.qpic.cn/psc?/V10FhZTb1y231c/jmmX4OKaz9ls*nNN2EORpUVJW1tO6mB.zFfFTS6rHAW*3IiyvagSJdxAB.qVJGzgof*BuXzWUntD3jANr455ls1D7uSueO6SGqvXuXhHSSs!/b&amp;bo=*QAwAAAAAAADF*8!&amp;rf=viewer_4" alt="img"> </p>
+<p>鼠标右键它就行</p>
+<p>模板选择Qt Resource File，如下图所示，名称设置为<code>myResources</code>。</p>
+<p> <img src="http://m.qpic.cn/psc?/V10FhZTb1y231c/jmmX4OKaz9ls*nNN2EORpcuhQELVQhBxEvtT9Jb7Vsur8z7Vq8RhrOqDGKm5TaV1aUH0g6RF2dyT9DEm*JySN308YhtaHOFz2T4nReAz*Mw!/b&amp;bo=cgMvAgAAAAADF24!&amp;rf=viewer_4" alt="img"> </p>
+<p>创建完文件后会自动打开该资源文件，这里需要先在下面添加前缀，就是点击添加按钮，然后选择前缀，默认的前缀是<code>/new/prefix1</code>，这个可以随意修改（不要出现中文字符），我修改的是/MyIcon。</p>
+<p> <img src="http://m.qpic.cn/psc?/V10FhZTb1y231c/jmmX4OKaz9ls*nNN2EORpeXZF8EHHw26vjpSWLVHhBe6aB5xoCnfwh.THlnQEAnDDxJ8cfR*0JX7khg*Po5mAljG*xOid61jo*pub*G7rc4!/b&amp;bo=rgGBAAAAAAADFxw!&amp;rf=viewer_4" alt="img"> </p>
+<p>然后再按下添加按钮来添加文件，这里先将所有要用到的图片放到项目目录中。</p>
+<p> <img src="http://m.qpic.cn/psc?/V10FhZTb1y231c/jmmX4OKaz9ls*nNN2EORpRb78yofnTg*vkZhwgkRonzXreh.NCuxM94Df9T6EN0.tmgffFHr.SRy7.UGIWvY6gDFqNV2vG2pc0owE.UbBok!/b&amp;bo=.wL6AAAAAAADFzE!&amp;rf=viewer_4" alt="img"> </p>
+<p>比如我们这里在<strong>项目目录</strong>中新建了一个<code>Icon</code>文件夹，然后将需要的图标文件粘贴进去。</p>
+<p>搞完这个文件夹以后，点添加，然后点文件，找到路径后全选确定就行，添加完文件后，如下图所示。</p>
+<p> <img src="http://m.qpic.cn/psc?/V10FhZTb1y231c/jmmX4OKaz9ls*nNN2EORpe83iRgFSQUIbgAyRoTWabqEYvUAmQiCytopgA6jG8aFw19cjWZeIgTmjazKrZCb**oZTgEfLD5C0v7NLVZTBP4!/b&amp;bo=8AIOAgAAAAADF8w!&amp;rf=viewer_4" alt="img"> </p>
+<p>当添加完资源后，<strong>一定</strong>要按下<code>Ctrl + S</code>来保存资源文件，不然在后面可能无法显示已经添加的资源。</p>
+<p><strong>以上图片资源我都放在群里了。</strong></p>
+<h2 id="使用资源文件"><a href="#使用资源文件" class="headerlink" title="使用资源文件"></a>使用资源文件</h2><p>我们重新到<strong>设计模式</strong>打开新建菜单的编辑动作对话框，然后添加图标。</p>
+<p> <img src="http://m.qpic.cn/psc?/V10FhZTb1y231c/jmmX4OKaz9ls*nNN2EORpZ6ETiwKVo85tdOR6uFpHkU598g2HyQ3Cni7LsXAZzvSGiz57vF86aAyQMNaRedVtwZ5tUXzLz1dUoPsmjhSRVQ!/b&amp;bo=xQRlAwAAAAADF5U!&amp;rf=viewer_4" alt="img"> </p>
+<p>我们点击这里需要的新建图标<code>filenew.png</code>，按下确定即可。</p>
+<p>现在按下<code>Ctrl + R</code>键运行程序，看看效果。</p>
+<p><blockquote class="blockquote-center">没有好康的，就没有灵魂</blockquote> </p>
+<h1 id="完善UI"><a href="#完善UI" class="headerlink" title="完善UI"></a>完善UI</h1><p>菜单以及文本编译部分</p>
+<h2 id="最终效果"><a href="#最终效果" class="headerlink" title="最终效果"></a>最终效果</h2><p> <img src="http://m.qpic.cn/psc?/V10FhZTb1y231c/jmmX4OKaz9ls*nNN2EORpQPgRBut0qY*Es3rJSR2dHyEx4LZVjVZ*PjmTgfS4K0WaVZ8obbLIm0b*BuiPqRQMRec0*hwFyW7IugPcs2mSoM!/b&amp;bo=xwAFAQAAAAADF*E!&amp;rf=viewer_4" alt="img">  <img src="http://m.qpic.cn/psc?/V10FhZTb1y231c/jmmX4OKaz9ls*nNN2EORpW.Dho.Pl4AZzDgO34YRk*qmvKxrlTlRocGx0Olq7gibottCGBw6kns3CnfaKA13.sq3TzgJYWHQGp0rVI.YWRw!/b&amp;bo=DAHyAAAAAAADF80!&amp;rf=viewer_4" alt="img">  <img src="http://m.qpic.cn/psc?/V10FhZTb1y231c/jmmX4OKaz9ls*nNN2EORpUvmsLYp2kjc1WBo10l3HyVvpau.KlX8*hc1e9GO7bQokWINKOTEMILnIXmGkMzXVuki3Ed9krZCDLh7zRIakPU!/b&amp;bo=5gCBAAAAAAADF1U!&amp;rf=viewer_4" alt="img"> </p>
+<h2 id="布局管理器"><a href="#布局管理器" class="headerlink" title="布局管理器"></a>布局管理器</h2><p>拖入一个文本编辑器<code>Text Edit</code>部件。如下图所示。</p>
+<p><img src="https://wizardforcel.gitbooks.io/qt-beginning/content/img/5-13.png" alt="img"></p>
+<p>然后我们在界面上点击鼠标右键，选择布局→栅格布局（或者使用快捷键<code>Ctrl+G</code>）。</p>
+<p>这时整个文本编辑器部件就会填充中央区域。</p>
+<p>现在运行程序，可以发现，无论怎样拉伸窗口，文本编辑器总是填充整个中央区域。</p>
+<h1 id="实现功能"><a href="#实现功能" class="headerlink" title="实现功能"></a>实现功能</h1><p>从这里开始，会有一点代码部分</p>
+<h2 id="中文字符"><a href="#中文字符" class="headerlink" title="中文字符"></a>中文字符</h2><p>先在<code>main.cpp</code>文件中添加代码来保证代码中可以使用中文字符。 </p>
+<p>首先添加<code>#include &lt;QTextCodec&gt;</code>头文件包含，然后在主函数中添加如下代码：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">QTextCodec::setCodecForLocale(QTextCodec::codecForName(<span class="string">"UTF8"</span>));</span><br></pre></td></tr></table></figure>
+<h2 id="基础功能实现"><a href="#基础功能实现" class="headerlink" title="基础功能实现"></a>基础功能实现</h2><p>在<code>mainwindow.h</code>文件中添加<code>public</code>函数声明：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">newFile</span><span class="params">()</span></span>;   <span class="comment">// 新建操作</span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">maybeSave</span><span class="params">()</span></span>; <span class="comment">// 判断是否需要保存</span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">save</span><span class="params">()</span></span>;      <span class="comment">// 保存操作</span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">saveAs</span><span class="params">()</span></span>;    <span class="comment">// 另存为操作</span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">saveFile</span><span class="params">(<span class="keyword">const</span> QString &amp;fileName)</span></span>; <span class="comment">// 保存文件</span></span><br></pre></td></tr></table></figure>
+<p>这里的几个函数就是用来完成功能逻辑的，下面我们会添加它们的定义来实现相应的功能。因为这几个功能联系紧密，所以这几个函数会相互调用。</p>
+<p>然后添加<code>private</code>变量定义：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 为真表示文件没有保存过，为假表示文件已经被保存过了</span></span><br><span class="line"><span class="keyword">bool</span> isUntitled;</span><br><span class="line"><span class="comment">// 保存当前文件的路径</span></span><br><span class="line">QString curFile;</span><br></pre></td></tr></table></figure>
+<p>这里的<code>isUntitled</code>是一个标志，用来判断文档是否被保存过。而<code>curFile</code>用来保存当前打开的文件的路径。</p>
+<p>下面到<code>mainwindow.cpp</code>文件，先添加头文件：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;QMessageBox&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;QPushButton&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;QFileDialog&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;QTextStream&gt;</span></span></span><br></pre></td></tr></table></figure>
+<p>下面添加那几个函数的定义。</p>
+<p>新建操作：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> MainWindow::newFile()</span><br><span class="line">&#123;</span><br><span class="line">   <span class="keyword">if</span> (maybeSave()) &#123;</span><br><span class="line">       isUntitled = <span class="literal">true</span>;</span><br><span class="line">       curFile = tr(<span class="string">"未命名.txt"</span>);</span><br><span class="line">       setWindowTitle(curFile);</span><br><span class="line">       ui-&gt;textEdit-&gt;clear();</span><br><span class="line">       ui-&gt;textEdit-&gt;setVisible(<span class="literal">true</span>);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里先使用<code>maybeSave()</code>来判断文档是否需要保存，如果已经保存完了，则新建文档，并进行初始化。下面是<code>maybeSave()</code>函数的定义：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">bool</span> MainWindow::maybeSave()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 如果文档被更改了</span></span><br><span class="line">    <span class="keyword">if</span> (ui-&gt;textEdit-&gt;document()-&gt;isModified()) &#123;</span><br><span class="line">    <span class="comment">// 自定义一个警告对话框</span></span><br><span class="line">       QMessageBox box;</span><br><span class="line">       box.setWindowTitle(tr(<span class="string">"警告"</span>));</span><br><span class="line">       box.setIcon(QMessageBox::Warning);</span><br><span class="line">       box.setText(curFile + tr(<span class="string">" 尚未保存，是否保存？"</span>));</span><br><span class="line">       QPushButton *yesBtn = box.addButton(tr(<span class="string">"是(&amp;Y)"</span>),</span><br><span class="line">                        QMessageBox::YesRole);</span><br><span class="line">       box.addButton(tr(<span class="string">"否(&amp;N)"</span>), QMessageBox::NoRole);</span><br><span class="line">       QPushButton *cancelBut = box.addButton(tr(<span class="string">"取消"</span>),</span><br><span class="line">                        QMessageBox::RejectRole);</span><br><span class="line">       box.exec();</span><br><span class="line">       <span class="keyword">if</span> (box.clickedButton() == yesBtn)</span><br><span class="line">            <span class="keyword">return</span> save();</span><br><span class="line">       <span class="keyword">else</span> <span class="keyword">if</span> (box.clickedButton() == cancelBut)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="comment">// 如果文档没有被更改，则直接返回true</span></span><br><span class="line">   <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里先使用了<code>isModified()</code>来判断文档是否被更改了，如果被更改了，则弹出对话框让用户选择是否进行保存，或者取消操作。如果取消操作，那么就返回<code>false</code>，什么都不执行。下面是<code>save()</code>函数的定义：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">bool</span> MainWindow::save()</span><br><span class="line">&#123;</span><br><span class="line">   <span class="keyword">if</span> (isUntitled) &#123;</span><br><span class="line">       <span class="keyword">return</span> saveAs();</span><br><span class="line">   &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">       <span class="keyword">return</span> saveFile(curFile);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里如果文档以前没有保存过，那么执行另存为操作<code>saveAs()</code>，如果已经保存过，那么调用<code>saveFile()</code>执行文件保存操作。下面是<code>saveAs()</code>函数的定义：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">bool</span> MainWindow::saveAs()</span><br><span class="line">&#123;</span><br><span class="line">   QString fileName = QFileDialog::getSaveFileName(<span class="keyword">this</span>,</span><br><span class="line">                                         tr(<span class="string">"另存为"</span>),curFile);</span><br><span class="line">   <span class="keyword">if</span> (fileName.isEmpty()) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">   <span class="keyword">return</span> saveFile(fileName);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里使用<code>QFileDialog</code>来实现了一个另存为对话框，并且获取了文件的路径，然后使用文件路径来保存文件。下面是<code>saveFile()</code>函数的定义：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">bool</span> MainWindow::saveFile(<span class="keyword">const</span> QString &amp;fileName)</span><br><span class="line">&#123;</span><br><span class="line">   <span class="function">QFile <span class="title">file</span><span class="params">(fileName)</span></span>;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">if</span> (!file.open(QFile::WriteOnly | QFile::Text)) &#123;</span><br><span class="line"></span><br><span class="line">       <span class="comment">// %1和%2分别对应后面arg两个参数，/n起换行的作用</span></span><br><span class="line">       QMessageBox::warning(<span class="keyword">this</span>, tr(<span class="string">"多文档编辑器"</span>),</span><br><span class="line">                   tr(<span class="string">"无法写入文件 %1：/n %2"</span>)</span><br><span class="line">                  .arg(fileName).arg(file.errorString()));</span><br><span class="line">       <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="function">QTextStream <span class="title">out</span><span class="params">(&amp;file)</span></span>;</span><br><span class="line">   <span class="comment">// 鼠标指针变为等待状态</span></span><br><span class="line">   QApplication::setOverrideCursor(Qt::WaitCursor);</span><br><span class="line">   out &lt;&lt; ui-&gt;textEdit-&gt;toPlainText();</span><br><span class="line">   <span class="comment">// 鼠标指针恢复原来的状态</span></span><br><span class="line">   QApplication::restoreOverrideCursor();</span><br><span class="line">   isUntitled = <span class="literal">false</span>;</span><br><span class="line">   <span class="comment">// 获得文件的标准路径</span></span><br><span class="line">   curFile = QFileInfo(fileName).canonicalFilePath();</span><br><span class="line">   setWindowTitle(curFile);</span><br><span class="line">   <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>如果不明白，就把鼠标放到不懂的上面然后按F1</strong></p>
+<p>双击<code>mainwindow.ui</code>文件，在图形界面窗口下面的<code>Action</code>编辑器里</p>
+<p> <img src="http://m.qpic.cn/psc?/V10FhZTb1y231c/jmmX4OKaz9ls*nNN2EORpbMXn5r9JNH1WtqnHJlxCnROvul97.VgTqnmSr0Pujjt1UShi2xinrG6osA4B1uUfxZcCvDU4QQj*ojK17BDoeI!/b&amp;bo=*QLMAAAAAAADBxE!&amp;rf=viewer_4" alt="img"> </p>
+<p>我们鼠标右击“新建”菜单一条，选择“转到槽”，然后选择<code>triggered()</code>，另外两个同理。最终代码如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> MainWindow::on_action_N_triggered()</span><br><span class="line">&#123;</span><br><span class="line">    newFile();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> MainWindow::on_action_S_triggered()</span><br><span class="line">&#123;</span><br><span class="line">    save();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> MainWindow::on_action_A_triggered()</span><br><span class="line">&#123;</span><br><span class="line">    saveAs();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>现在运行程序，已经能够实现新建文件，保存文件，文件另存为的功能了。</p>
+<h2 id="实现其他功能"><a href="#实现其他功能" class="headerlink" title="实现其他功能"></a>实现其他功能</h2><p>先到<code>mainwindow.h</code>文件中添加<code>public</code>函数声明：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">loadFile</span><span class="params">(<span class="keyword">const</span> QString &amp;fileName)</span></span>; <span class="comment">// 加载文件</span></span><br></pre></td></tr></table></figure>
+<p>然后到<code>mainwindow.cpp</code>文件中添加该函数的定义：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">bool</span> MainWindow::loadFile(<span class="keyword">const</span> QString &amp;fileName)</span><br><span class="line">&#123;</span><br><span class="line">   <span class="function">QFile <span class="title">file</span><span class="params">(fileName)</span></span>;</span><br><span class="line">   <span class="comment">// 新建QFile对象</span></span><br><span class="line">   <span class="keyword">if</span> (!file.open(QFile::ReadOnly | QFile::Text)) &#123;</span><br><span class="line">       QMessageBox::warning(<span class="keyword">this</span>, tr(<span class="string">"多文档编辑器"</span>),tr(<span class="string">"无法读取文件 %1:\n%2."</span>).arg(fileName).arg(file.errorString()));</span><br><span class="line">       <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">       <span class="comment">// 只读方式打开文件，出错则提示，并返回false</span></span><br><span class="line">   &#125;</span><br><span class="line">   <span class="function">QTextStream <span class="title">in</span><span class="params">(&amp;file)</span></span>;</span><br><span class="line">   <span class="comment">// 新建文本流对象</span></span><br><span class="line">   QApplication::setOverrideCursor(Qt::WaitCursor);</span><br><span class="line">   <span class="comment">// 读取文件的全部文本内容，并添加到编辑器中</span></span><br><span class="line">   ui-&gt;textEdit-&gt;setPlainText(in.readAll());</span><br><span class="line">   QApplication::restoreOverrideCursor();</span><br><span class="line"></span><br><span class="line">   <span class="comment">// 设置当前文件</span></span><br><span class="line">   curFile = QFileInfo(fileName).canonicalFilePath();</span><br><span class="line">   setWindowTitle(curFile);</span><br><span class="line">   <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>分别进入其他几个动作的触发信号的槽，更改如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> MainWindow::on_action_O_triggered()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (maybeSave()) &#123;</span><br><span class="line">           QString fileName = QFileDialog::getOpenFileName(<span class="keyword">this</span>);</span><br><span class="line">           <span class="keyword">if</span> (!fileName.isEmpty()) &#123;</span><br><span class="line">                <span class="comment">// 如果文件名不为空，则加载文件</span></span><br><span class="line">                loadFile(fileName);</span><br><span class="line">                ui-&gt;textEdit-&gt;setVisible(<span class="literal">true</span>);</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> MainWindow::on_action_C_triggered()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (maybeSave()) &#123;</span><br><span class="line">           ui-&gt;textEdit-&gt;setVisible(<span class="literal">false</span>);</span><br><span class="line">       &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> MainWindow::on_action_X_triggered()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 先执行关闭操作，再退出程序</span></span><br><span class="line">    <span class="comment">// qApp是指向应用程序的全局指针</span></span><br><span class="line">    on_action_C_triggered();</span><br><span class="line">    qApp-&gt;quit();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> MainWindow::on_action_Z_triggered()</span><br><span class="line">&#123;</span><br><span class="line">    ui-&gt;textEdit-&gt;undo();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> MainWindow::on_action_X_3_triggered()</span><br><span class="line">&#123;</span><br><span class="line">    ui-&gt;textEdit-&gt;cut();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> MainWindow::on_action_C_2_triggered()</span><br><span class="line">&#123;</span><br><span class="line">    ui-&gt;textEdit-&gt;copy();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> MainWindow::on_action_V_triggered()</span><br><span class="line">&#123;</span><br><span class="line">    ui-&gt;textEdit-&gt;paste();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里可以看到，复制、粘贴等常用功能是<code>QTextEdit</code>已经实现的，我们只需要调用相应的函数。虽然实现了退出功能，但是，有时候会使用窗口标题栏的关闭按钮来关闭程序，这里我们需要使用关闭事件处理函数来实现相应的功能。</p>
+<p>下面到<code>mainwindow.h</code>文件中，先添加头文件包含<code>#include&lt;QCloseEvent&gt;</code>，然后添加函数声明：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">protected</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">closeEvent</span><span class="params">(QCloseEvent *event)</span></span>; <span class="comment">// 关闭事件</span></span><br></pre></td></tr></table></figure>
+<p>然后到<code>mainwindow.cpp</code>文件中添加该函数的定义：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> MainWindow::closeEvent(QCloseEvent *event)</span><br><span class="line">&#123;</span><br><span class="line">   <span class="comment">// 如果maybeSave()函数返回true，则关闭程序</span></span><br><span class="line">   <span class="keyword">if</span> (maybeSave()) &#123;</span><br><span class="line">       event-&gt;accept();</span><br><span class="line">   &#125; <span class="keyword">else</span> &#123;   <span class="comment">// 否则忽略该事件</span></span><br><span class="line">       event-&gt;ignore();</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="查找功能"><a href="#查找功能" class="headerlink" title="查找功能"></a>查找功能</h1><h2 id="函数声明"><a href="#函数声明" class="headerlink" title="函数声明"></a>函数声明</h2><p>首先到<code>mainwindow.h</code>文件中添加类的前置声明：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">QLineEdit</span>;</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">QDialog</span>;</span></span><br></pre></td></tr></table></figure>
+<p>前置声明所在的位置跟头文件包含的位置相同。</p>
+<p>然后在<code>private</code>中添加对象定义：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">QLineEdit *findLineEdit;</span><br><span class="line">QDialog *findDlg;</span><br></pre></td></tr></table></figure>
+<p>添加一个私有槽声明：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> slots:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">showFindText</span><span class="params">()</span></span>;</span><br></pre></td></tr></table></figure>
+<p>槽可以看做是一个函数，只不过可以和信号进行关联。</p>
+<p>下面到<code>mainwindow.cpp</code>文件中，因为前面在头文件中使用了类的前置声明，所以这里需要先添加头文件包含：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;QLineEdit&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;QDialog&gt;</span></span></span><br></pre></td></tr></table></figure>
+<p>然后在构造函数中进行初始化操作，即添加如下代码：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">findDlg = <span class="keyword">new</span> QDialog(<span class="keyword">this</span>);</span><br><span class="line">findDlg-&gt;setWindowTitle(tr(<span class="string">"查找"</span>));</span><br><span class="line">findLineEdit = <span class="keyword">new</span> QLineEdit(findDlg);</span><br><span class="line">QPushButton *btn= <span class="keyword">new</span> QPushButton(tr(<span class="string">"查找下一个"</span>), findDlg);</span><br><span class="line">QVBoxLayout *layout= <span class="keyword">new</span> QVBoxLayout(findDlg);</span><br><span class="line">layout-&gt;addWidget(findLineEdit);</span><br><span class="line">layout-&gt;addWidget(btn);</span><br><span class="line">connect(btn, SIGNAL(clicked()), <span class="keyword">this</span>, SLOT(showFindText()));</span><br></pre></td></tr></table></figure>
+<p>这里创建了一个对话框，然后将一个行编辑器和一个按钮放到了上面，并使用布局管理器进行布局。</p>
+<p>最后将按钮的单击信号关联到了自定义的显示查找到的文本槽上。</p>
+<h2 id="实现功能-1"><a href="#实现功能-1" class="headerlink" title="实现功能"></a>实现功能</h2><p>在<code>mainwindow.cpp</code>中</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> MainWindow::showFindText()</span><br><span class="line">&#123;</span><br><span class="line">   QString str = findLineEdit-&gt;text();</span><br><span class="line">   ui-&gt;textEdit-&gt;find(str, QTextDocument::FindBackward);<span class="comment">//这行等会换一下</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这时已经能实现查找的功能了。</p>
+<p>但是<code>find</code>的返回值类型是<code>bool</code>型，而且，我们也应该为查找不到字符串作出提示。（怎么看，按<code>F1</code>）</p>
+<p>将这行代码更改为：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (!ui-&gt;textEdit-&gt;find(str, QTextDocument::FindBackward))</span><br><span class="line">&#123;</span><br><span class="line">   QMessageBox::warning(<span class="keyword">this</span>, tr(<span class="string">"查找"</span>),</span><br><span class="line">            tr(<span class="string">"找不到%1"</span>).arg(str));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>最后，我们来实现界面上的查找功能。从设计模式进入查找动作的触发信号的槽，更改如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> MainWindow::on_action_F_triggered()</span><br><span class="line">&#123;</span><br><span class="line">    findDlg-&gt;show();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+        
+      
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>Post author:  </strong>Yiayaz
+  </li>
+  <li class="post-copyright-link">
+    <strong>Post link: </strong>
+    <a href="https://yiayaz.top/posts/JustTest/" title="JustTest">https://yiayaz.top/posts/JustTest/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
+  </li>
+</ul>
+</div>
+
+      
+
+      <footer class="post-footer">
+          
+            
+          
+          <div class="post-tags">
+            
+              <a href="/tags/Qt/" rel="tag"><i class="fa fa-tag"></i> Qt</a>
+            
+          </div>
+        
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/posts/2019_NCTF_WriteUp/" rel="next" title="2019_NCTF_WriteUp">
+                  <i class="fa fa-chevron-left"></i> 2019_NCTF_WriteUp
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+                <a href="/posts/2020牛客寒假算法基础集训营第一场题解/" rel="prev" title="2020牛客寒假算法基础集训营第一场">
+                  2020牛客寒假算法基础集训营第一场 <i class="fa fa-chevron-right"></i>
+                </a>
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+        
+        
+        
+        
+      
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-text">参考资料</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#新建项目"><span class="nav-text">新建项目</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#初试UI"><span class="nav-text">初试UI</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#添加图标"><span class="nav-text">添加图标</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#认识Action"><span class="nav-text">认识Action</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加资源文件"><span class="nav-text">添加资源文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用资源文件"><span class="nav-text">使用资源文件</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#完善UI"><span class="nav-text">完善UI</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#最终效果"><span class="nav-text">最终效果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#布局管理器"><span class="nav-text">布局管理器</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#实现功能"><span class="nav-text">实现功能</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#中文字符"><span class="nav-text">中文字符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基础功能实现"><span class="nav-text">基础功能实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现其他功能"><span class="nav-text">实现其他功能</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#查找功能"><span class="nav-text">查找功能</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#函数声明"><span class="nav-text">函数声明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现功能-1"><span class="nav-text">实现功能</span></a></li></ol></li></ol></div>
+        
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image"
+      src="http://image.0xfaner.top/yiayaz-header.jpg"
+      alt="Yiayaz">
+  <p class="site-author-name" itemprop="name">Yiayaz</p>
+  <div class="site-description" itemprop="description">I heard the echo, from the valleys and the heart.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">categories</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">tags</span>
+        </a>
+      </div>
+    
+  </nav>
+</div>
+  <div class="feed-link motion-element">
+    <a href="/atom.xml" rel="alternate">
+      <i class="fa fa-rss"></i>RSS
+    </a>
+  </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://github.com/yiayaz" title="GitHub &rarr; https://github.com/yiayaz" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="mailto:yourname@example.com" title="E-Mail &rarr; mailto:yourname@example.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+    
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    
+  
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title">
+      <i class="fa fa-fw fa-link"></i>
+      Friends
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://0xfaner.top" title="https://0xfaner.top" rel="noopener" target="_blank">0xfaner</a>
+        </li>
+      
+        <li class="links-of-blogroll-item">
+          <a href="https://www.johnzhang.xyz" title="https://www.johnzhang.xyz" rel="noopener" target="_blank">zsgsdesign</a>
+        </li>
+      
+        <li class="links-of-blogroll-item">
+          <a href="http://yuki.systems" title="http://yuki.systems" rel="noopener" target="_blank">Brethland</a>
+        </li>
+      
+        <li class="links-of-blogroll-item">
+          <a href="https://pikanglong.com" title="https://pikanglong.com" rel="noopener" target="_blank">Cone Pi</a>
+        </li>
+      
+        <li class="links-of-blogroll-item">
+          <a href="https://xgsteins.fun" title="https://xgsteins.fun" rel="noopener" target="_blank">Xgsteins</a>
+        </li>
+      
+        <li class="links-of-blogroll-item">
+          <a href="http://blog.x3zvawq.xyz" title="http://blog.x3zvawq.xyz" rel="noopener" target="_blank">X3ZvaWQ</a>
+        </li>
+      
+        <li class="links-of-blogroll-item">
+          <a href="https://chenks12138.github.io" title="https://chenks12138.github.io" rel="noopener" target="_blank">ChengKS</a>
+        </li>
+      
+        <li class="links-of-blogroll-item">
+          <a href="https://zaiyewujiang.cn" title="https://zaiyewujiang.cn" rel="noopener" target="_blank">TinyHuang</a>
+        </li>
+      
+        <li class="links-of-blogroll-item">
+          <a href="https://yizero10.github.io" title="https://yizero10.github.io" rel="noopener" target="_blank">ZeroHuang</a>
+        </li>
+      
+    </ul>
+  </div>
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Yiayaz</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+      <span class="post-meta-item-text">Symbols count total: </span>
+    
+    <span title="Symbols count total"></span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">Reading time total &asymp;</span>
+    
+    <span title="Reading time total"></span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js?v=3.1.0"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="/js/utils.js?v=7.4.1"></script><script src="/js/motion.js?v=7.4.1"></script>
+<script src="/js/schemes/pisces.js?v=7.4.1"></script>
+<script src="/js/next-boot.js?v=7.4.1"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="/js/local-search.js?v=7.4.1"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+    
+      
+<script type="text/x-mathjax-config">
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') {
+          next = next.nextSibling;
+        }
+        if (next && next.nodeName.toLowerCase() === 'br') {
+          next.parentNode.removeChild(next);
+        }
+      }
+    });
+  });
+
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
+      if (element.nodeName.toLowerCase() == 'li') {
+        element = element.parentNode;
+      }
+      element.classList.add('has-jax');
+    }
+  });
+</script>
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', () => {
+    MathJax.Hub.Typeset();
+  }, window.MathJax);
+</script>
+
+    
+  
+
+  
+
+  
+
+</body>
+</html>
