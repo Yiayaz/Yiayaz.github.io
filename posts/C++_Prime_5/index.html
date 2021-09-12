@@ -67,7 +67,7 @@
 <meta property="og:description" content="C++ Prime 5">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://yiayaz.top/images/C++%20Prime%205%20&%202.5~2.7.png">
-<meta property="og:updated_time" content="2021-05-09T08:19:44.867Z">
+<meta property="og:updated_time" content="2021-09-12T05:25:44.046Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C++ Prime 5">
 <meta name="twitter:description" content="C++ Prime 5">
@@ -1006,7 +1006,8 @@
 <h3 id="12-13"><a href="#12-13" class="headerlink" title="12.13"></a>12.13</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">auto</span> sp = make_shared&lt;<span class="keyword">int</span>&gt;();</span><br><span class="line"><span class="keyword">auto</span> p = sp.get();</span><br><span class="line"><span class="keyword">delete</span> p;</span><br></pre></td></tr></table></figure>
 <h3 id="12-14"><a href="#12-14" class="headerlink" title="12.14"></a>12.14</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">connection</span> &#123;</span></span><br><span class="line">    <span class="built_in">string</span> ip;</span><br><span class="line">    <span class="keyword">int</span> port;</span><br><span class="line">    connection(<span class="built_in">string</span> ip_, <span class="keyword">int</span> port_):ip(ip_), port(port_)&#123; &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">destination</span> &#123;</span></span><br><span class="line">    <span class="built_in">string</span> ip;</span><br><span class="line">    <span class="keyword">int</span> port;</span><br><span class="line">    destination(<span class="built_in">string</span> ip_, <span class="keyword">int</span> port_):ip(ip_), port(port_)&#123; &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function">connection <span class="title">connect</span><span class="params">(destination* pDest)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">shared_ptr</span>&lt;connection&gt; pConn(<span class="keyword">new</span> connection(pDest-&gt;ip, pDest-&gt;port));</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"creating connection("</span> &lt;&lt; pConn.use_count() &lt;&lt; <span class="string">")"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> *pConn;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">disconnect</span><span class="params">(connection pConn)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"connection close("</span> &lt;&lt; pConn.ip &lt;&lt; <span class="string">":"</span> &lt;&lt; pConn.port &lt;&lt; <span class="string">")"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">end_connection</span><span class="params">(connection *pConn)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    disconnect(*pConn);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">f</span><span class="params">(destination &amp;d)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    connection conn = connect(&amp;d);</span><br><span class="line">    <span class="built_in">shared_ptr</span>&lt;connection&gt; p(&amp;conn, end_connection);</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"connecting now("</span> &lt;&lt; p.use_count() &lt;&lt; <span class="string">")"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="function">destination <span class="title">dest</span><span class="params">(<span class="string">"202.118.176.67"</span>, <span class="number">3316</span>)</span></span>;</span><br><span class="line">    f(dest);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="12-15"><a href="#12-15" class="headerlink" title="12.15"></a>12.15</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">shared_ptr</span>&lt;connection&gt; p(&amp;conn, [](connection *pConn)&#123;</span><br><span class="line">    disconnect(*pConn);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<h3 id="12-16"><a href="#12-16" class="headerlink" title="12.16"></a>12.16</h3>
+<h3 id="12-16"><a href="#12-16" class="headerlink" title="12.16"></a>12.16</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
     </div>
 
     
@@ -1046,22 +1047,6 @@
 
         
 
-          <div class="post-nav">
-            <div class="post-nav-next post-nav-item">
-              
-                <a href="/posts/CF786B_Legacy/" rel="next" title="CF786 B Legacy">
-                  <i class="fa fa-chevron-left"></i> CF786 B Legacy
-                </a>
-              
-            </div>
-
-            <span class="post-nav-divider"></span>
-
-            <div class="post-nav-prev post-nav-item">
-              
-            </div>
-          </div>
-        
       </footer>
     
   </article>
@@ -1122,7 +1107,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-count">1</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -1135,7 +1120,7 @@
             <a href="/categories/">
           
         
-        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-count">1</span>
         <span class="site-state-item-name">categories</span>
         </a>
       </div>
@@ -1148,7 +1133,7 @@
             <a href="/tags/">
           
         
-        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-count">1</span>
         <span class="site-state-item-name">tags</span>
         </a>
       </div>
@@ -1274,12 +1259,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="Symbols count total">155k</span>
+    <span title="Symbols count total">100k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">2:21</span>
+    <span title="Reading time total">1:30</span>
 </div>
 
         
